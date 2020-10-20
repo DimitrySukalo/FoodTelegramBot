@@ -1,4 +1,5 @@
 ﻿using FoodTelegramBot.Controllers;
+using FoodTelegramBot.DB;
 using FoodTelegramBot.Models;
 using System;
 
@@ -8,7 +9,7 @@ namespace FoodTelegramBot
     {
         static void Main(string[] args)
         {
-            BotController botController = new BotController(Bot.GetClient());
+            BotController botController = new BotController(Bot.GetClient(new TelegramBotContext()));
             botController.StartBot();
 
 

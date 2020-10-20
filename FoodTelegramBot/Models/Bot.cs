@@ -1,4 +1,5 @@
-﻿using FoodTelegramBot.Models.Commands;
+﻿using FoodTelegramBot.DB;
+using FoodTelegramBot.Models.Commands;
 using System.Collections.Generic;
 using Telegram.Bot;
 
@@ -11,12 +12,12 @@ namespace FoodTelegramBot.Models
 
         public static IReadOnlyList<CommandBase> Commands => _commands.AsReadOnly();
 
-        public static TelegramBotClient GetClient()
+        public static TelegramBotClient GetClient(TelegramBotContext db)
         {
             if (_client != null)
                 return _client;
 
-            _commands = new List<CommandBase>();
+            _commands = new List<CommandBase>() { new StartCommand(db) };
             _client = new TelegramBotClient(AppConfig.Token);
 
             return _client;
