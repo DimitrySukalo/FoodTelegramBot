@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoodTelegramBot.Controllers;
+using FoodTelegramBot.Models;
+using System;
 
 namespace FoodTelegramBot
 {
@@ -6,7 +8,11 @@ namespace FoodTelegramBot
     {
         static void Main(string[] args)
         {
-            
+            BotController botController = new BotController(Bot.GetClient());
+            botController.StartBot();
+
+
+            Console.WriteLine("Bot server is started...");
             Console.ReadLine();
         }
     }
