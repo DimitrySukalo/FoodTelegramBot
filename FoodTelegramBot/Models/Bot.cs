@@ -17,7 +17,11 @@ namespace FoodTelegramBot.Models
             if (_client != null)
                 return _client;
 
-            _commands = new List<CommandBase>() { new StartCommand(db) };
+            _commands = new List<CommandBase>()
+            {
+                new StartCommand(db),
+                new MenuCommand()
+            };
             _client = new TelegramBotClient(AppConfig.Token);
 
             return _client;
