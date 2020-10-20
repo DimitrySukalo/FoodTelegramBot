@@ -6,7 +6,8 @@ namespace FoodTelegramBot
     {
         static void Main(string[] args)
         {
-
+            
+            Console.ReadLine();
         }
     }
 }
