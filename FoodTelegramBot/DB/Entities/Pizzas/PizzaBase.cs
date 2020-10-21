@@ -11,6 +11,8 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
 
         public abstract List<BaseIngredient> Ingredients { get; set; }
 
+        public abstract string PhotoPath { get; set; }
+
         public virtual decimal GetCost()
         {
             return Cost;

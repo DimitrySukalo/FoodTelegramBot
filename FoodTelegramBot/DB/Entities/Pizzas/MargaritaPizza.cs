@@ -7,6 +7,7 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
     {
         public override string Name { get; set; } = "Маргарита";
         public override List<BaseIngredient> Ingredients { get; set; }
+        public override string PhotoPath { get; set; } = @"img\margarita.png";
 
         public MargaritaPizza()
         {

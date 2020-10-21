@@ -1,4 +1,5 @@
 ﻿using FoodTelegramBot.DB;
+using FoodTelegramBot.DB.Entities.Pizzas;
 using FoodTelegramBot.Models.Commands;
 using System.Collections.Generic;
 using Telegram.Bot;
@@ -21,7 +22,8 @@ namespace FoodTelegramBot.Models
             {
                 new StartCommand(db),
                 new MenuCommand(),
-                new PizzaMenuCommand()
+                new PizzaMenuCommand(),
+                new PizzaNameCommand(new MargaritaPizza())
             };
             _client = new TelegramBotClient(AppConfig.Token);
 

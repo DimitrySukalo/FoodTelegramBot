@@ -3,6 +3,7 @@ using FoodTelegramBot.Models.Commands;
 using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
+using Telegram.Bot.Types;
 
 namespace FoodTelegramBot.Controllers
 {
@@ -24,12 +25,17 @@ namespace FoodTelegramBot.Controllers
 
         private async void ClientOnCallBack(object sender, CallbackQueryEventArgs e)
         {
-            switch(e.CallbackQuery.Data)
+            var commands = Bot.Commands;
+            var message = new Message();
+            
+            message.Text = e.CallbackQuery.Data.ToString();
+
+            foreach(var command in commands)
             {
-                case "/pizzas":
-                    var pizzaMenuCommand = new PizzaMenuCommand();
-                    await pizzaMenuCommand.Execute(e.CallbackQuery.Message, _client);
-                    break;
+                if(command.IsContains(message))
+                {
+                    await command.Execute(e.CallbackQuery.Message, _client);
+                }
             }
         }
 
