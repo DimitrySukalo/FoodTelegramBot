@@ -26,7 +26,7 @@ namespace FoodTelegramBot.Models.Commands
                     new[]
                     {
                         InlineKeyboardButton.WithCallbackData("Напитки \U0001F378", "/drinks"),
-                        InlineKeyboardButton.WithCallbackData("Салаты \U0001F340", "/salads")
+                        InlineKeyboardButton.WithCallbackData("Салаты \U0001F957", "/salads")
                     },
                     new[]
                     {

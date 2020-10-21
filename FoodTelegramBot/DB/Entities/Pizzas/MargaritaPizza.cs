@@ -5,9 +5,12 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
 {
     public class MargaritaPizza : PizzaBase
     {
-        public override string Name { get; set; } = "Маргарита";
-        public override List<BaseIngredient> Ingredients { get; set; }
-        public override string PhotoPath { get; set; } = @"img\margarita.png";
+        public override string Name { get; }
+        public override List<BaseIngredient> Ingredients { get; }
+        public override string PhotoPath { get; }
+        public override double Weight { get; }
+
+        public override SizeOfPizza SizeOfPizza { get; }
 
         public MargaritaPizza()
         {
@@ -17,6 +20,11 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
                 new Tomato(),
                 new TomatoSauce()
             };
+
+            Name = "Маргарита";
+            PhotoPath = @"img\margarita.png";
+            Weight = 250;
+            SizeOfPizza = SizeOfPizza.Small;
         }
 
         public override decimal GetCost()

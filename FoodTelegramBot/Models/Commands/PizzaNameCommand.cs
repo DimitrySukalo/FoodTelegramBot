@@ -34,12 +34,27 @@ namespace FoodTelegramBot.Models.Commands
         private string GetDescriptionOfPizza()
         {
             StringBuilder description = new StringBuilder();
-            description.Append($"Название: {pizza.Name}\n");
-            description.Append($"Цена: {pizza.GetCost()}\n");
-            description.Append("Ингредиеты:\n");
+            description.Append($"\U0001F355 Название: {pizza.Name}\n");
+            description.Append($"\U0001F4B0 Цена: {pizza.GetCost()} грн\n");
+            description.Append($"\U0001F53C Вес: {pizza.Weight} гр\n");
+
+            switch(pizza.SizeOfPizza)
+            {
+                case SizeOfPizza.Small:
+                    description.Append("\U0001F197Маленькая\n");
+                    break;
+                case SizeOfPizza.Medium:
+                    description.Append("\U0001F192 Средняя\n");
+                    break;
+                case SizeOfPizza.Large:
+                    description.Append("\U0001F51D Большая\n");
+                    break;
+            }
+
+            description.Append("\U0001F963 Ингредиеты:\n");
             foreach (var ingredient in pizza.Ingredients)
             {
-                description.Append($"\t{ingredient.Name}\n");
+                description.Append($"\t\t{ingredient.Name}\n");
             }
 
             return description.ToString();
