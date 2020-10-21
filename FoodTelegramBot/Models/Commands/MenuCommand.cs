@@ -40,7 +40,7 @@ namespace FoodTelegramBot.Models.Commands
 
         public override bool IsContains(Message message)
         {
-            return message.Type == MessageType.Text && message.Text.Contains(Name);
+            return message.Text.Contains(Name);
         }
     }
 }

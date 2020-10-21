@@ -20,7 +20,8 @@ namespace FoodTelegramBot.Models
             _commands = new List<CommandBase>()
             {
                 new StartCommand(db),
-                new MenuCommand()
+                new MenuCommand(),
+                new PizzaMenuCommand()
             };
             _client = new TelegramBotClient(AppConfig.Token);
 

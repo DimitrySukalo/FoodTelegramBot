@@ -1,4 +1,5 @@
 ﻿using FoodTelegramBot.Models;
+using FoodTelegramBot.Models.Commands;
 using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -18,6 +19,18 @@ namespace FoodTelegramBot.Controllers
         {
             _client.StartReceiving();
             _client.OnMessage += ClientOnMessage;
+            _client.OnCallbackQuery += ClientOnCallBack;
+        }
+
+        private async void ClientOnCallBack(object sender, CallbackQueryEventArgs e)
+        {
+            switch(e.CallbackQuery.Data)
+            {
+                case "/pizzas":
+                    var pizzaMenuCommand = new PizzaMenuCommand();
+                    await pizzaMenuCommand.Execute(e.CallbackQuery.Message, _client);
+                    break;
+            }
         }
 
         private void ClientOnMessage(object sender, MessageEventArgs e)
