@@ -23,7 +23,8 @@ namespace FoodTelegramBot.Models
                 new StartCommand(db),
                 new MenuCommand(),
                 new PizzaMenuCommand(),
-                new PizzaNameCommand(new MargaritaPizza())
+                new PizzaNameCommand(new MargaritaPizza()),
+                new PizzaNameCommand(new PekingChicken())
             };
             _client = new TelegramBotClient(AppConfig.Token);
 

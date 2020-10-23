@@ -6,7 +6,8 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
     {
         public static IEnumerable<PizzaBase> Pizzas { get; } = new List<PizzaBase>()
         {
-            new MargaritaPizza()
+            new MargaritaPizza(),
+            new PekingChicken()
         };
     }
 }

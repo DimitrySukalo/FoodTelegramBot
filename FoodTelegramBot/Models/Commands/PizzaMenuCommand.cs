@@ -14,14 +14,16 @@ namespace FoodTelegramBot.Models.Commands
         public override async Task Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            List<InlineKeyboardButton> buttons = new List<InlineKeyboardButton>();
+            List<List<InlineKeyboardButton>> buttons = new List<List<InlineKeyboardButton>>();
 
             var listOfPizzas = PizzaList.Pizzas;
             foreach(var pizza in listOfPizzas)
             {
-                var button = new InlineKeyboardButton();
-                button.CallbackData = $"/{pizza.Name}";
-                button.Text = pizza.Name;
+                var button = new List<InlineKeyboardButton>();
+                var subButton = new InlineKeyboardButton();
+                subButton.CallbackData = $"/{pizza.Name}";
+                subButton.Text = pizza.Name;
+                button.Add(subButton);
                 buttons.Add(button);
             }
 

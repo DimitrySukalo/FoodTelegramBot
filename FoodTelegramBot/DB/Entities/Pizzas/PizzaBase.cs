@@ -15,8 +15,6 @@ namespace FoodTelegramBot.DB.Entities.Pizzas
 
         public abstract double Weight { get; set; }
 
-        public abstract SizeOfPizza SizeOfPizza { get; set; }
-
         public virtual decimal GetCost()
         {
             return Cost;
