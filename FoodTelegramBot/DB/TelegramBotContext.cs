@@ -6,6 +6,8 @@ namespace FoodTelegramBot.DB
     public class TelegramBotContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<PizzaName> PizzaNames { get; set; }
         
         public TelegramBotContext()
         {

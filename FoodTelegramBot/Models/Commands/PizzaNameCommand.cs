@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.InputFiles;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace FoodTelegramBot.Models.Commands
 {
@@ -24,6 +25,16 @@ namespace FoodTelegramBot.Models.Commands
         {
             var chatId = message.Chat.Id;
             var description = GetDescriptionOfPizza();
+            var keyboard = new InlineKeyboardMarkup
+            (
+                new[]
+                {
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("Добавить в корзину", "/addPizzaToCart")
+                    }
+                }
+            );
 
             using (var stream = System.IO.File.Open(pizza.PhotoPath, FileMode.Open))
             {
