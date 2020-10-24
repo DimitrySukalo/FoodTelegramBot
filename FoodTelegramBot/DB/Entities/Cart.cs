@@ -1,15 +1,10 @@
-﻿using FoodTelegramBot.DB.Entities.Pizzas;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace FoodTelegramBot.DB.Entities
 {
     public class Cart
     {
         public int Id { get; set; }
-
-        [NotMapped]
-        public List<PizzaBase> Pizzas { get; set; }
 
         public virtual ICollection<PizzaName> PizzaNames { get; set; }
 

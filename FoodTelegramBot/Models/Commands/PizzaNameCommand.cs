@@ -31,14 +31,14 @@ namespace FoodTelegramBot.Models.Commands
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Добавить в корзину", "/addPizzaToCart")
+                        InlineKeyboardButton.WithCallbackData("Добавить в корзину", $"/addPizza{pizza.Name}")
                     }
                 }
             );
 
             using (var stream = System.IO.File.Open(pizza.PhotoPath, FileMode.Open))
             {
-                await client.SendPhotoAsync(chatId, new InputOnlineFile(stream), description);
+                await client.SendPhotoAsync(chatId, new InputOnlineFile(stream), description, replyMarkup: keyboard);
             }
         }
 

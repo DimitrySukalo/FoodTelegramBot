@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using FoodTelegramBot.DB;
+using FoodTelegramBot.DB.Entities;
+using FoodTelegramBot.DB.Entities.Pizzas;
 using Microsoft.EntityFrameworkCore;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -54,7 +57,12 @@ namespace FoodTelegramBot.Models.Commands
                 UserName = message.From.Username,
                 FirstName = message.From.FirstName,
                 LastName = message.From.LastName,
-                ChatId = message.Chat.Id
+                ChatId = message.Chat.Id,
+                Cart = new Cart()
+                {
+                    PizzaNames = new List<PizzaName>(),
+                    Price = 0.0m
+                }
             };
 
             var sameUserInDb = await _db.Users.FirstOrDefaultAsync(u => u.ChatId == user.ChatId);

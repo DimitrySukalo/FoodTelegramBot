@@ -29,6 +29,7 @@ namespace FoodTelegramBot.Controllers
             var message = new Message();
             
             message.Text = e.CallbackQuery.Data.ToString();
+            e.CallbackQuery.Message.Text = e.CallbackQuery.Data;
 
             foreach(var command in commands)
             {
