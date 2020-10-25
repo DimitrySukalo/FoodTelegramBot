@@ -61,7 +61,8 @@ namespace FoodTelegramBot.Models.Commands
                 Cart = new Cart()
                 {
                     PizzaNames = new List<PizzaName>(),
-                    Price = 0.0m
+                    Price = 0.0m,
+                    IsOrdered = false
                 }
             };
 

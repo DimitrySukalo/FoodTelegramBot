@@ -12,5 +12,7 @@ namespace FoodTelegramBot.DB.Entities
         public virtual User User { get; set; }
 
         public decimal Price { get; set; }
+
+        public bool IsOrdered { get; set; }
     }
 }
