@@ -63,7 +63,8 @@ namespace FoodTelegramBot.Models.Commands
                     PizzaNames = new List<PizzaName>(),
                     Price = 0.0m,
                     IsOrdered = false
-                }
+                },
+                Country = new Country()
             };
 
             var sameUserInDb = await _db.Users.FirstOrDefaultAsync(u => u.ChatId == user.ChatId);

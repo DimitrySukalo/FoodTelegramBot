@@ -3,14 +3,16 @@ using FoodTelegramBot.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodTelegramBot.Migrations
 {
     [DbContext(typeof(TelegramBotContext))]
-    partial class TelegramBotContextModelSnapshot : ModelSnapshot
+    [Migration("20201025215229_AddCountryAndChangedUserProperty")]
+    partial class AddCountryAndChangedUserProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

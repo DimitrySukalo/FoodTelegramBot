@@ -40,7 +40,10 @@ namespace FoodTelegramBot.Models.Commands
                     }
                     content.Append($"Сумма заказа: {priceOfCart} грн");
                 }
-
+                else if(pizzas.Count == 0)
+                {
+                    content.Append($"Сумма заказа: {priceOfCart} грн");
+                }
 
                 var keyboard = new InlineKeyboardMarkup
                 (

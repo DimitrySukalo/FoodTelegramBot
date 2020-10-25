@@ -8,6 +8,7 @@ namespace FoodTelegramBot.DB
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<PizzaName> PizzaNames { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
         
         public TelegramBotContext()
         {

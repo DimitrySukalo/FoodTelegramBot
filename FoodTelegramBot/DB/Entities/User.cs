@@ -13,5 +13,12 @@
         public string LastName { get; set; }
 
         public Cart Cart { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Email { get; set; }
+
+        public int CountryId { get; set; }
+        public virtual Country Country { get; set; }
     }
 }
