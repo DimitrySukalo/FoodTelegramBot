@@ -1,4 +1,5 @@
 ﻿using FoodTelegramBot.DB.Entities.Pizzas;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -29,7 +30,14 @@ namespace FoodTelegramBot.Models.Commands
 
             var keyboard = new InlineKeyboardMarkup(buttons);
 
-            await client.SendTextMessageAsync(chatId, "Выберите пиццу: ", replyMarkup: keyboard);
+            try
+            {
+                await client.SendTextMessageAsync(chatId, "Выберите пиццу: ", replyMarkup: keyboard);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return new OperationsDetails("Menu is sended", true);
         }
