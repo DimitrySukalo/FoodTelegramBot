@@ -20,7 +20,7 @@ namespace FoodTelegramBot.Models.Commands
             _db = context ?? throw new ArgumentNullException(nameof(context), " was null");
         }
 
-        public override async Task Execute(Message message, TelegramBotClient client)
+        public override async Task<OperationsDetails> Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
             var user = await _db.Users.Include(u => u.Cart).ThenInclude(c => c.PizzaNames).FirstOrDefaultAsync(u => u.ChatId == chatId);
@@ -36,8 +36,12 @@ namespace FoodTelegramBot.Models.Commands
 
                     await _db.SaveChangesAsync();
                     await client.SendTextMessageAsync(chatId, "Пицца была успешно добавлена у вашу корзину! Чтобы увидеть свою корзину введите /cart или вернитесь в меню и выберите \"Корзина\".");
+
+                    return new OperationsDetails("Pizza have been added", true);
                 }
-            }    
+            }
+
+            return new OperationsDetails("User is null", false);
         }
 
         public override bool IsContains(Message message)

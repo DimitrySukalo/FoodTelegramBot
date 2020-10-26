@@ -8,7 +8,7 @@ namespace FoodTelegramBot.Models.Commands
     {
         public abstract string Name { get; }
 
-        public abstract Task Execute(Message message, TelegramBotClient client);
+        public abstract Task<OperationsDetails> Execute(Message message, TelegramBotClient client);
 
         public abstract bool IsContains(Message message);
     }

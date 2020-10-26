@@ -21,7 +21,7 @@ namespace FoodTelegramBot.Models.Commands
 
         public override string Name => $"/{pizza.Name}";
 
-        public override async Task Execute(Message message, TelegramBotClient client)
+        public override async Task<OperationsDetails> Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
             var description = GetDescriptionOfPizza();
@@ -40,6 +40,8 @@ namespace FoodTelegramBot.Models.Commands
             {
                 await client.SendPhotoAsync(chatId, new InputOnlineFile(stream), description, replyMarkup: keyboard);
             }
+
+            return new OperationsDetails("Pizza is sended", true);
         }
 
         private string GetDescriptionOfPizza()

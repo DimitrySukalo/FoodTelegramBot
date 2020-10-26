@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodTelegramBot", "FoodTelegramBot\FoodTelegramBot.csproj", "{B845D3B7-4323-48DC-987A-C7737F5D1F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodTelegramBot", "FoodTelegramBot\FoodTelegramBot.csproj", "{B845D3B7-4323-48DC-987A-C7737F5D1F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodTelegramBot.Tests", "FoodTelegramBot.Tests\FoodTelegramBot.Tests.csproj", "{935C8E51-9A5A-4921-A646-D9D8F8443CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B845D3B7-4323-48DC-987A-C7737F5D1F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B845D3B7-4323-48DC-987A-C7737F5D1F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B845D3B7-4323-48DC-987A-C7737F5D1F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935C8E51-9A5A-4921-A646-D9D8F8443CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935C8E51-9A5A-4921-A646-D9D8F8443CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935C8E51-9A5A-4921-A646-D9D8F8443CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935C8E51-9A5A-4921-A646-D9D8F8443CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

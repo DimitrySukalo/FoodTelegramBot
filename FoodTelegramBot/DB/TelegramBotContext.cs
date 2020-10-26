@@ -12,7 +12,6 @@ namespace FoodTelegramBot.DB
         
         public TelegramBotContext()
         {
-            Database.EnsureCreated();
         }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

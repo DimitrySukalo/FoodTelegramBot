@@ -10,7 +10,7 @@ namespace FoodTelegramBot.Models.Commands
     {
         public override string Name => @"/menu";
 
-        public override async Task Execute(Message message, TelegramBotClient client)
+        public override async Task<OperationsDetails> Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
 
@@ -36,6 +36,8 @@ namespace FoodTelegramBot.Models.Commands
             );
 
             await client.SendTextMessageAsync(chatId, "Меню: ",replyMarkup: keyboardButtons);
+
+            return new OperationsDetails("Menu is sended", true);
         }
 
         public override bool IsContains(Message message)

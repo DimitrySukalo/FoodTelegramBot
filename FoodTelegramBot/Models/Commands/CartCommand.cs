@@ -20,7 +20,7 @@ namespace FoodTelegramBot.Models.Commands
 
         public override string Name => @"/cart";
 
-        public override async Task Execute(Message message, TelegramBotClient client)
+        public override async Task<OperationsDetails> Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
             var user = await _db.Users.Include(u => u.Cart).ThenInclude(c => c.PizzaNames).FirstOrDefaultAsync(u => u.ChatId == chatId);
@@ -57,7 +57,11 @@ namespace FoodTelegramBot.Models.Commands
                 );
 
                 await client.SendTextMessageAsync(chatId, content.ToString(), replyMarkup: keyboard);
+
+                return new OperationsDetails("Cart is sended", true);
             }
+
+            return new OperationsDetails("User is null", false);
         }
 
         public override bool IsContains(Message message)
