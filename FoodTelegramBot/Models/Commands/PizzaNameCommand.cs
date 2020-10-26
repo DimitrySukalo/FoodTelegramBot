@@ -36,9 +36,16 @@ namespace FoodTelegramBot.Models.Commands
                 }
             );
 
-            using (var stream = System.IO.File.Open(pizza.PhotoPath, FileMode.Open))
+            try
             {
-                await client.SendPhotoAsync(chatId, new InputOnlineFile(stream), description, replyMarkup: keyboard);
+                using (var stream = System.IO.File.Open(pizza.PhotoPath, FileMode.Open))
+                {
+                    await client.SendPhotoAsync(chatId, new InputOnlineFile(stream), description, replyMarkup: keyboard);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
 
             return new OperationsDetails("Pizza is sended", true);
