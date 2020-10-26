@@ -30,19 +30,42 @@ namespace FoodTelegramBot.Models.Commands
                     if (string.IsNullOrWhiteSpace(user.PhoneNumber) || string.IsNullOrWhiteSpace(user.Email)
                         || string.IsNullOrWhiteSpace(user.Country.Name) || string.IsNullOrWhiteSpace(user.Country.City))
                     {
-                        await client.SendTextMessageAsync(chatId, "Ваша информация не заполнена до конца. Введите /profile , чтобы заполнить свои учётные данные.");
+                        try
+                        {
+                            await client.SendTextMessageAsync(chatId, "Ваша информация не заполнена до конца. Введите /profile , чтобы заполнить свои учётные данные.");
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
                         return new OperationsDetails("Profile is not filled", false);
                     }
                     else
                     {
-                        user.Cart.IsOrdered = true;
-                        await client.SendTextMessageAsync(chatId, "Спасибо за заказ! Ожидайте дзвонка!");
+                        try
+                        {
+                            user.Cart.IsOrdered = true;
+                            await client.SendTextMessageAsync(chatId, "Спасибо за заказ! Ожидайте дзвонка!");
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
                         return new OperationsDetails("Products is ordered", true);
                     }
                 }
-                else if(user.Cart.Price == 0)
+                else if (user.Cart.Price == 0)
                 {
-                    await client.SendTextMessageAsync(chatId, "Вы не выбрали ни одного продукта!");
+                    try
+                    {
+                        await client.SendTextMessageAsync(chatId, "Вы не выбрали ни одного продукта!");
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
 
                     return new OperationsDetails("Cart is null", false);
                 }
