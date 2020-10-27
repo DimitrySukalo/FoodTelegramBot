@@ -56,7 +56,14 @@ namespace FoodTelegramBot.Models.Commands
                     }
                 );
 
-                await client.SendTextMessageAsync(chatId, content.ToString(), replyMarkup: keyboard);
+                try
+                {
+                    await client.SendTextMessageAsync(chatId, content.ToString(), replyMarkup: keyboard);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
                 return new OperationsDetails("Cart is sended", true);
             }
