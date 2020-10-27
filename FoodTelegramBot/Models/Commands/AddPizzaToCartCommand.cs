@@ -34,10 +34,22 @@ namespace FoodTelegramBot.Models.Commands
                     user.Cart.PizzaNames.Add(new PizzaName() { Name = pizzaName });
                     user.Cart.Price += pizza.GetCost();
 
-                    await _db.SaveChangesAsync();
-                    await client.SendTextMessageAsync(chatId, "Пицца была успешно добавлена у вашу корзину! Чтобы увидеть свою корзину введите /cart или вернитесь в меню и выберите \"Корзина\".");
+                    try
+                    {
+                        await _db.SaveChangesAsync();
+                        await client.SendTextMessageAsync(chatId, "Пицца была успешно добавлена у вашу корзину! Чтобы увидеть свою корзину введите /cart или вернитесь в меню и выберите \"Корзина\".");
+
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
 
                     return new OperationsDetails("Pizza have been added", true);
+                }
+                else
+                {
+                    return new OperationsDetails("Pizza is null", false);
                 }
             }
 
