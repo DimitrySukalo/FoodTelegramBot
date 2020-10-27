@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace FoodTelegramBot.Models.Commands
@@ -35,7 +35,14 @@ namespace FoodTelegramBot.Models.Commands
                 }
             );
 
-            await client.SendTextMessageAsync(chatId, "Меню: ",replyMarkup: keyboardButtons);
+            try
+            {
+                await client.SendTextMessageAsync(chatId, "Меню: ", replyMarkup: keyboardButtons);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return new OperationsDetails("Menu is sended", true);
         }
