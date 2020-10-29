@@ -28,7 +28,8 @@ namespace FoodTelegramBot.Models
                 new AddPizzaToCartCommand(db),
                 new CartCommand(db),
                 new OrderProducts(db),
-                new ProfileCommand(db)
+                new ProfileCommand(db),
+                new ChangeNameCommand(db)
             };
             _client = new TelegramBotClient(AppConfig.Token);
 

@@ -32,13 +32,13 @@ namespace FoodTelegramBot.Models.Commands
                 {
                     await client.SendTextMessageAsync(chatId, $"Ваша информация:\n{data}\n" +
                                                               $"Вы можете изменить такие настройки как: имя, фамилия, никнейм, страну и город. Комманды для изменений: \n" +
-                                                              $"/changeName@{AppConfig.Name} - изменить имя\n" +
-                                                              $"/changeLastName@{AppConfig.Name} - изменить фамилия\n" +
-                                                              $"/changeUserName@{AppConfig.Name} - изменить ник\n" +
-                                                              $"/changeCountry@{AppConfig.Name} - сменить страну\n" +
-                                                              $"/changeCity@{AppConfig.Name} - сменить город\n" +
-                                                              $"/changePhoneNumber@{AppConfig.Name} - сменить номер телефона\n" +
-                                                              $"/changeEmail@{AppConfig.Name} - сменить почту\n" +
+                                                              $"/changeName@YourNewName - изменить имя\n" +
+                                                              $"/changeLastName@YourNewLastName - изменить фамилия\n" +
+                                                              $"/changeUserName@YourNewUserName - изменить ник\n" +
+                                                              $"/changeCountry@YourNewCountry - сменить страну\n" +
+                                                              $"/changeCity@YourNewCity - сменить город\n" +
+                                                              $"/changePhoneNumber@YourNewPhoneNumber - сменить номер телефона\n" +
+                                                              $"/changeEmail@YourNewEmail - сменить почту\n" +
                                                               $"Если вы не заполните эту информацию, то вы не сможете заказать продукты в нашем боте!");
                 }
                 catch(Exception e)
