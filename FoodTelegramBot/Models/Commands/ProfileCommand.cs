@@ -27,16 +27,24 @@ namespace FoodTelegramBot.Models.Commands
             if(currentUser != null)
             {
                 var data = GetProfileData(currentUser);
-                await client.SendTextMessageAsync(chatId, $"Ваша информация:\n{data}\n" +
-                                                          $"Вы можете изменить такие настройки как: имя, фамилия, никнейм, страну и город. Комманды для изменений: \n" +
-                                                          $"/changeName@{AppConfig.Name} - изменить имя\n" +
-                                                          $"/changeLastName@{AppConfig.Name} - изменить фамилия\n" +
-                                                          $"/changeUserName@{AppConfig.Name} - изменить ник\n" +
-                                                          $"/changeCountry@{AppConfig.Name} - сменить страну\n" +
-                                                          $"/changeCity@{AppConfig.Name} - сменить город\n" +
-                                                          $"/changePhoneNumber@{AppConfig.Name} - сменить номер телефона\n" +
-                                                          $"/changeEmail@{AppConfig.Name} - сменить почту\n" +
-                                                          $"Если вы не заполните эту информацию, то вы не сможете заказать продукты в нашем боте!");
+
+                try
+                {
+                    await client.SendTextMessageAsync(chatId, $"Ваша информация:\n{data}\n" +
+                                                              $"Вы можете изменить такие настройки как: имя, фамилия, никнейм, страну и город. Комманды для изменений: \n" +
+                                                              $"/changeName@{AppConfig.Name} - изменить имя\n" +
+                                                              $"/changeLastName@{AppConfig.Name} - изменить фамилия\n" +
+                                                              $"/changeUserName@{AppConfig.Name} - изменить ник\n" +
+                                                              $"/changeCountry@{AppConfig.Name} - сменить страну\n" +
+                                                              $"/changeCity@{AppConfig.Name} - сменить город\n" +
+                                                              $"/changePhoneNumber@{AppConfig.Name} - сменить номер телефона\n" +
+                                                              $"/changeEmail@{AppConfig.Name} - сменить почту\n" +
+                                                              $"Если вы не заполните эту информацию, то вы не сможете заказать продукты в нашем боте!");
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
                 return new OperationsDetails("Data is sended", true);
             }
