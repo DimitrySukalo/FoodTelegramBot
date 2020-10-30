@@ -57,7 +57,7 @@ namespace FoodTelegramBot.Models.Commands
                 Console.WriteLine(e.Message);
             }
 
-            return new OperationsDetails("Not valid lastname", false);
+            return new OperationsDetails("Not valid username", false);
         }
 
         public override bool IsContains(Message message)
