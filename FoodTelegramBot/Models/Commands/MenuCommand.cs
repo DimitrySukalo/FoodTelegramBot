@@ -20,17 +20,7 @@ namespace FoodTelegramBot.Models.Commands
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("Пицца \U0001F355", "/pizzas"),
-                        InlineKeyboardButton.WithCallbackData("Суши \U0001F363", "/sushies")
-                    },
-                    new[]
-                    {
-                        InlineKeyboardButton.WithCallbackData("Напитки \U0001F378", "/drinks"),
-                        InlineKeyboardButton.WithCallbackData("Салаты \U0001F957", "/salads")
-                    },
-                    new[]
-                    {
-                        InlineKeyboardButton.WithCallbackData("Корзина \U0001F4B0", "/cart")
+                        InlineKeyboardButton.WithCallbackData("Пицца \U0001F355", "/pizzas")
                     }
                 }
             );
