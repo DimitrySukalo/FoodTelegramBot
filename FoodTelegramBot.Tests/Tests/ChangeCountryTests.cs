@@ -54,13 +54,12 @@ namespace FoodTelegramBot.Tests.Tests
             Assert.True(result);
         }
 
-        private (Mock<TelegramBotContext> dbMock, Mock<DbSet<User>> userMock, Mock<DbSet<Country>> countryMock) GetMocks()
+        private (Mock<TelegramBotContext> dbMock, Mock<DbSet<User>> userMock) GetMocks()
         {
             var dbMock = new Mock<TelegramBotContext>();
             var userMock = new Mock<DbSet<User>>();
-            var countryMock = new Mock<DbSet<Country>>();
 
-            return (dbMock, userMock, countryMock);
+            return (dbMock, userMock);
         }
 
         [Fact]

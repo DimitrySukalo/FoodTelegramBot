@@ -1,7 +1,7 @@
 ﻿using FoodTelegramBot.DB;
 using FoodTelegramBot.DB.Entities;
 using FoodTelegramBot.Models;
-using FoodTelegramBot.Models.Commands;
+using FoodTelegramBot.Models.Commands.ProfileSettingCommands;
 using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
@@ -16,21 +16,21 @@ using User = FoodTelegramBot.DB.Entities.User;
 
 namespace FoodTelegramBot.Tests.Tests
 {
-    public class ChangeNameCommandTests
+    public class ChangeCityTests
     {
         [Fact]
         private void ContaintMethodReturnsFalse()
         {
             //Arrange
             var dbMock = new Mock<TelegramBotContext>();
-            var changeName = new ChangeNameCommand(dbMock.Object);
+            var changeCity = new ChangeCityCommand(dbMock.Object);
             var message = new Message()
             {
                 Text = Guid.NewGuid().ToString()
             };
 
             //Act
-            var result = changeName.IsContains(message);
+            var result = changeCity.IsContains(message);
 
             //Assert
             Assert.False(result);
@@ -41,14 +41,14 @@ namespace FoodTelegramBot.Tests.Tests
         {
             //Arrange
             var dbMock = new Mock<TelegramBotContext>();
-            var changeName = new ChangeNameCommand(dbMock.Object);
+            var changeCity = new ChangeCityCommand(dbMock.Object);
             var message = new Message()
             {
-                Text = "/changeName"
+                Text = "/changeCity"
             };
 
             //Act
-            var result = changeName.IsContains(message);
+            var result = changeCity.IsContains(message);
 
             //Assert
             Assert.True(result);
@@ -63,7 +63,7 @@ namespace FoodTelegramBot.Tests.Tests
         }
 
         [Fact]
-        private async Task ExecuteMethodReturnsNotValidName()
+        private async Task ExecuteMethodReturnsNotValidCity()
         {
             //Arrange
             var mocks = GetMocks();
@@ -72,25 +72,25 @@ namespace FoodTelegramBot.Tests.Tests
             SetSettingsInDb(mocks.userMock, users);
             mocks.dbMock.Setup(m => m.Users).Returns(mocks.userMock.Object);
 
-            var changeName = new ChangeNameCommand(mocks.dbMock.Object);
+            var changeCity = new ChangeCityCommand(mocks.dbMock.Object);
             var message = new Message()
             {
                 Chat = new Chat()
                 {
                     Id = 1
                 },
-                Text = "/changeName@YourNewName"
+                Text = "/changeCity@YourNewCity"
             };
 
             var client = new TelegramBotClient(AppConfig.Token);
 
             //Act
-            var result = await changeName.Execute(message, client);
+            var result = await changeCity.Execute(message, client);
 
             //Assert
             Assert.NotNull(result);
             Assert.False(result?.isSuccessed);
-            Assert.Equal("Not valid name", result?.Message);
+            Assert.Equal("Not valid city", result?.Message);
 
         }
 
@@ -104,7 +104,7 @@ namespace FoodTelegramBot.Tests.Tests
             SetSettingsInDb(mocks.userMock, users);
             mocks.dbMock.Setup(m => m.Users).Returns(mocks.userMock.Object);
 
-            var changeName = new ChangeNameCommand(mocks.dbMock.Object);
+            var changeCity = new ChangeCityCommand(mocks.dbMock.Object);
             var message = new Message()
             {
                 Chat = new Chat()
@@ -117,7 +117,7 @@ namespace FoodTelegramBot.Tests.Tests
             var client = new TelegramBotClient(AppConfig.Token);
 
             //Act
-            var result = await changeName.Execute(message, client);
+            var result = await changeCity.Execute(message, client);
 
             //Assert
             Assert.NotNull(result);
@@ -126,7 +126,7 @@ namespace FoodTelegramBot.Tests.Tests
         }
 
         [Fact]
-        private async Task ExecuteMethodReturnsNameIsChanged()
+        private async Task ExecuteMethodReturnsCityIsChanged()
         {
             //Arrange
             var mocks = GetMocks();
@@ -135,25 +135,25 @@ namespace FoodTelegramBot.Tests.Tests
             SetSettingsInDb(mocks.userMock, users);
             mocks.dbMock.Setup(m => m.Users).Returns(mocks.userMock.Object);
 
-            var changeName = new ChangeNameCommand(mocks.dbMock.Object);
+            var changeCity = new ChangeCityCommand(mocks.dbMock.Object);
             var message = new Message()
             {
                 Chat = new Chat()
                 {
                     Id = 1
                 },
-                Text = "/changeName@Test"
+                Text = "/changeCity@Test"
             };
 
             var client = new TelegramBotClient(AppConfig.Token);
 
             //Act
-            var result = await changeName.Execute(message, client);
+            var result = await changeCity.Execute(message, client);
 
             //Assert
             Assert.NotNull(result);
             Assert.True(result?.isSuccessed);
-            Assert.Equal("Name is changed", result?.Message);
+            Assert.Equal("City is changed", result?.Message);
         }
 
         private List<User> GetUsers()
