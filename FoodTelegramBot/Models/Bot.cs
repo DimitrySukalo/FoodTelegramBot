@@ -30,7 +30,8 @@ namespace FoodTelegramBot.Models
                 new OrderProducts(db),
                 new ProfileCommand(db),
                 new ChangeNameCommand(db),
-                new ChangeLastNameCommand(db)
+                new ChangeLastNameCommand(db),
+                new ChangeUserNameCommand(db)
             };
             _client = new TelegramBotClient(AppConfig.Token);
 
