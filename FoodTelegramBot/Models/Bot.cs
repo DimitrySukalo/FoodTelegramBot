@@ -1,6 +1,7 @@
 ﻿using FoodTelegramBot.DB;
 using FoodTelegramBot.DB.Entities.Pizzas;
 using FoodTelegramBot.Models.Commands;
+using FoodTelegramBot.Models.Commands.ProfileSettingCommands;
 using System.Collections.Generic;
 using Telegram.Bot;
 
@@ -32,7 +33,8 @@ namespace FoodTelegramBot.Models
                 new ChangeNameCommand(db),
                 new ChangeLastNameCommand(db),
                 new ChangeUserNameCommand(db),
-                new ChangeCountryNameCommand(db)
+                new ChangeCountryNameCommand(db),
+                new ChangeCityCommand(db)
             };
             _client = new TelegramBotClient(AppConfig.Token);
 
