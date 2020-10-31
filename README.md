@@ -4,8 +4,8 @@ This is just test project of telegram bot, who can order food for you.
 # Usage
 1. git clone https://github.com/DimitrySukalo/FoodTelegramBot.git
 2. Open solution in the Visual Studio or another editor.
-3. Change in TelegramBotContext.cs connection string to the database and add create database.
-5. In AppConfig change Token of your bot.
+3. Change in TelegramBotContext.cs connection string to the database and create your database.
+5. In AppConfig paste Token of your bot.
 4. Run project and you should to see "Bot Server is started..."
 5. Now you can use this bot!
 
