@@ -1,6 +1,7 @@
 ﻿using FoodTelegramBot.DB;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -22,42 +23,41 @@ namespace FoodTelegramBot.Models.Commands.ProfileSettingCommands
         {
             var chatId = message.Chat.Id;
             var words = message.Text.Split('@');
-
-            if (words[1] != "YourNewEmail")
+            if(words.Count() != 3)
             {
-                var currentUser = await _db.Users.FirstOrDefaultAsync(u => u.ChatId == chatId);
-
-                if (currentUser != null)
+                try
                 {
-                    currentUser.Email = $"{words[1]}@{words[2]}";
-
-                    await _db.SaveChangesAsync();
-
-                    try
-                    {
-                        await client.SendTextMessageAsync(chatId, $"Ваш email изменён на: {words[1]}@{words[2]}");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                    return new OperationsDetails("Email is changed", true);
+                    await client.SendTextMessageAsync(chatId, "Неверный формат email-a");
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
 
-                return new OperationsDetails("User is null", false);
+                return new OperationsDetails("Not valid email", false);
             }
 
-            try
+            var currentUser = await _db.Users.FirstOrDefaultAsync(u => u.ChatId == chatId);
+
+            if (currentUser != null)
             {
-                await client.SendTextMessageAsync(chatId, "Пожалуйста, введите вместо YourNewEmail свой новый email");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                currentUser.Email = $"{words[1]}@{words[2]}";
+
+                await _db.SaveChangesAsync();
+
+                try
+                {
+                    await client.SendTextMessageAsync(chatId, $"Ваш email изменён на: {words[1]}@{words[2]}");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                return new OperationsDetails("Email is changed", true);
             }
 
-            return new OperationsDetails("Not valid email", false);
+            return new OperationsDetails("User is null", false);
         }
 
         public override bool IsContains(Message message)
